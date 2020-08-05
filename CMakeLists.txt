@@ -28,7 +28,7 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR})
 add_library(jmi STATIC jmi.cpp)
 add_executable(test_signature test/signature.cpp)
-target_link_libraries(test_signature PRIVATE jmi)
+target_link_libraries(test_signature PRIVATE jmi pthread)
 add_library(JMITest SHARED test/JMITest.cpp)
 target_link_libraries(JMITest PRIVATE jmi)
 add_jar(test_jmi test/JMITest.java)
@@ -42,3 +42,9 @@ if(ANDROID)
   target_link_libraries(test_signature PRIVATE -landroid -llog)
   target_link_libraries(JMITest PRIVATE -landroid -llog)
 endif()
+
+INSTALL(TARGETS test_signature
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
