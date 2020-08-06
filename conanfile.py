@@ -8,7 +8,7 @@ class EchoConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
     generators = "cmake"
-    #exports_sources = "src/*","CMakeLists.txt"
+    exports_sources = "test/*","*.cpp","*.h","CMakeLists.txt"
 
     def source(self):
         self.run("git clone https://github.com/wang-bin/JMI.git")
@@ -20,4 +20,8 @@ class EchoConan(ConanFile):
 
     def package(self):
         cmake = CMake(self)
-        cmake.install()
+        #cmake.install()
+
+    def package_info(self):
+        if self.settings.os == "Linux":
+            self.cpp_info.libs.append("pthread")

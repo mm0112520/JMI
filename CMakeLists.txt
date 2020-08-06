@@ -42,9 +42,3 @@ if(ANDROID)
   target_link_libraries(test_signature PRIVATE -landroid -llog)
   target_link_libraries(JMITest PRIVATE -landroid -llog)
 endif()
-
-INSTALL(TARGETS test_signature
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-)
